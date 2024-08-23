@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Demon Tracker</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Track Your Demons</h2>
+            <form id="demonForm">
+                <input type="text" id="demonName" placeholder="Enter Demon Name" required>
+                <input type="number" id="demonDifficulty" placeholder="Difficulty (1-10)" required>
+                <button type="submit">Add Demon</button>
+            </form>
+
+            <ul id="demonList"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

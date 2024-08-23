@@ -50,3 +50,27 @@ function loadFromLocalStorage() {
 
 // Load demons from localStorage when the page is loaded
 window.onload = loadFromLocalStorage;
+
+function saveToLocalStorage() {
+    const demonList = [];
+    document.querySelectorAll("#demonList li").forEach(item => {
+        const demonText = item.querySelector("span").textContent;
+        const [name, difficultyText] = demonText.split(" (Difficulty: ");
+        const difficulty = difficultyText.replace(")", "");
+        demonList.push({ name, difficulty });
+    });
+    console.log("Saving to localStorage:", demonList); // Debugging log
+    localStorage.setItem("demons", JSON.stringify(demonList));  // Save list to localStorage
+}
+
+function loadFromLocalStorage() {
+    const savedDemons = JSON.parse(localStorage.getItem("demons"));
+    console.log("Loaded from localStorage:", savedDemons); // Debugging log
+    if (savedDemons && Array.isArray(savedDemons)) {
+        savedDemons.forEach(demon => {
+            addDemon(demon.name, demon.difficulty);
+        });
+    } else {
+        console.log("No demons found in localStorage or data is corrupted.");
+    }
+}

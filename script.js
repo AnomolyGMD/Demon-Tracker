@@ -74,3 +74,27 @@ function loadFromLocalStorage() {
 
 // Load demons from localStorage when the page is loaded
 window.onload = loadFromLocalStorage;
+
+document.getElementById("filterForm").addEventListener("change", function() {
+    const selectedRange = document.getElementById("difficultyFilter").value;
+    filterDemonsByDifficulty(selectedRange);
+});
+
+function filterDemonsByDifficulty(range) {
+    const demonList = document.getElementById("demonList");
+    const demonItems = demonList.getElementsByTagName("li");
+
+    for (let i = 0; i < demonItems.length; i++) {
+        const demonText = demonItems[i].querySelector("span").textContent;
+        const difficulty = parseInt(demonText.match(/\d+/)[0]);
+
+        if (range === "all" || 
+           (range === "1-3" && difficulty >= 1 && difficulty <= 3) || 
+           (range === "4-6" && difficulty >= 4 && difficulty <= 6) || 
+           (range === "7-10" && difficulty >= 7 && difficulty <= 10)) {
+            demonItems[i].style.display = "";  // Show the item
+        } else {
+            demonItems[i].style.display = "none";  // Hide the item
+        }
+    }
+}
